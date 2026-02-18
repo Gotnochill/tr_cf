@@ -1,33 +1,39 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main(){
-    int t; cin>>t;
-    while (t--){
+bool isSorted(vector<int> array , int n){
 
-        int n,k; cin>>n>>k;
-        vector<int> arr(n);
-
-        for(int i=0; i<n; i++){
-            cin>>arr[i];
-        }
-
-        if (k == 1){
-            bool isSort = true;
-
-            for(int i=1; i<arr.size(); i++){
-                if (arr[i-1] < arr[i]){
-                    continue;
-                } else if (arr[i-1] > arr[i]){
-                    isSort = false;
-                    break;
-                }
-            }
-            cout<< (isSort ? "YES\n" : "NO\n");
-
-        } else {
-            cout<< "YES\n";
+    for(int i=0 ; i<n-1 ; i++){
+        if (array[i+1] < array[i]){
+            return false;
         }
     }
-    return 0;
+    return true;
+}
+
+int main(){
+    
+
+    int t; cin>>t;
+    while(t--){
+
+        int n , k ; cin>>n>>k;
+
+        vector<int> array(n);
+
+        for(int i=0 ; i<n ; i++){
+            cin>>array[i];
+        }
+        bool check = isSorted(array , n);
+
+        if (k<2){
+            if (check == true){
+                cout<<"YES"<<endl;
+            } else {
+                cout<<"NO"<<endl;
+            }
+        } else {
+            cout<<"YES"<<endl;
+        } 
+    }
 }
